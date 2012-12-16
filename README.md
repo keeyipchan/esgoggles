@@ -52,9 +52,8 @@ es.params > es:first-child:before {
 
 ## Screenshots
 
-<img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"/>
+<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"/></a>
 
-<img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"/>
+<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"/></a>
 
-<img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"/>
-
+<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"/></a>
