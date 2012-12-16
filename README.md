@@ -3,7 +3,7 @@ esgoggles
 
 Browser ide for reading and exploring javascript code.
 
-Demo:
+Demo: http://github.com/keeyipchan/esgoggles/demo/index.html
 
 ## Purpose
 
