@@ -16,7 +16,7 @@ Demo:
 
 ## Samples
 
-### Don't certain keywords? Use CSS to replace with something you prefer
+### Don't like certain keywords? Use CSS to replace with something you prefer
 ```css
 es.FunctionDeclaration > es.id:before,
 es.FunctionExpression > es.id:before
