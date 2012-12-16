@@ -4,63 +4,110 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Esgoggles by keeyipchan</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/keeyipchan/esgoggles">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/keeyipchan/esgoggles/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/keeyipchan/esgoggles/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
     <div class="wrapper">
-      <header>
-        <h1>Esgoggles</h1>
-        <p>Browser ide for reading and exploring javascript code</p>
 
-        <p class="view"><a href="https://github.com/keeyipchan/esgoggles">View the Project on GitHub <small>keeyipchan/esgoggles</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/keeyipchan/esgoggles/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/keeyipchan/esgoggles/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/keeyipchan/esgoggles">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <div id="title">
+          <h1>Esgoggles</h1>
+          <p>Browser ide for reading and exploring javascript code</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/keeyipchan">keeyipchan</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <h1>esgoggles</h1>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Browser ide for reading and exploring javascript code.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Demo: <a href="http://github.com/keeyipchan/esgoggles/demo/index.html">http://github.com/keeyipchan/esgoggles/demo/index.html</a></p>
 
-<h3>Designer Templates</h3>
+<h2>Purpose</h2>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>Reading badly-formatted code is a hassle</li>
+<li>People don't always agree on preferred formatting, why not make it an individual preference?
 
-<h3>Rather Drive Stick?</h3>
+<ul>
+<li>Represent the AST in the DOM, use jQuery for traversal, and CSS for styling</li>
+<li>Share plugins or themes suited for specific libraries or audiences (novice, expert, jQuery, extJS, etc..)</li>
+</ul>
+</li>
+<li>Javascript needs better static analysis tools; even better if they're interactive, allowing you to explore
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<ul>
+<li>escope provides valuable insight about your code</li>
+</ul>
+</li>
+</ul><h2>Samples</h2>
 
-<h3>Authors and Contributors</h3>
+<h3>Don't like certain keywords? Use CSS to replace with something you prefer</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight"><pre><span class="nt">es</span><span class="nc">.FunctionDeclaration</span> <span class="o">&gt;</span> <span class="nt">es</span><span class="nc">.id</span><span class="nd">:before</span><span class="o">,</span>
+<span class="nt">es</span><span class="nc">.FunctionExpression</span> <span class="o">&gt;</span> <span class="nt">es</span><span class="nc">.id</span><span class="nd">:before</span>
+<span class="p">{</span>
+    <span class="k">content</span><span class="o">:</span> <span class="s1">'λ '</span> <span class="c">/* Show a symbol instead of 'function' */</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3>Support or Contact</h3>
+<h3>Don't like parentheses except around function parameters? Use CSS</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<div class="highlight"><pre><span class="nt">es</span><span class="nc">.params</span>
+<span class="p">{</span>
+    <span class="k">margin-left</span><span class="o">:</span> <span class="m">4px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">es</span><span class="nc">.params</span><span class="nd">:before</span>
+<span class="p">{</span>
+    <span class="k">content</span><span class="o">:</span> <span class="s1">'('</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">es</span><span class="nc">.params</span><span class="nd">:after</span>
+<span class="p">{</span>
+    <span class="k">content</span><span class="o">:</span> <span class="s1">')'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">es</span><span class="nc">.params</span> <span class="o">&gt;</span> <span class="nt">es</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="k">content</span><span class="o">:</span> <span class="s1">','</span><span class="p">;</span>
+    <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+    <span class="k">margin-right</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">es</span><span class="nc">.params</span> <span class="o">&gt;</span> <span class="nt">es</span><span class="nd">:first-child:before</span> <span class="p">{</span>
+    <span class="k">content</span><span class="o">:</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="k">margin-right</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>Screenshots</h2>
+
+<p><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"></p>
+
+<p><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"></p>
+
+<p><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"></p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/keeyipchan">keeyipchan</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
