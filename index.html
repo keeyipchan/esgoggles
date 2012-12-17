@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'/>
     <title>sortable demo</title>
     <!--<link rel="stylesheet" href="jquery-ui.css">-->
     <script src="jquery.js"></script>
@@ -26,6 +27,7 @@
 	<style>
 body {
 	padding-bottom: 400px;
+	font-family: 'Open Sans', monospace;
 }
 #ast,
 #scopes {
@@ -115,9 +117,9 @@ $('body')
 	.append($('<div id="ast"><h2>AST</h2></div>'))
 
 var ast = esprima.parse(raw_escope.toString(), {raw:true})
-drawTree(ast, $('#ast'));
+//drawTree(ast, $('#ast'));
 
-drawTree(escope.analyze(ast), $('#scopes'), 0, 4)
+//drawTree(escope.analyze(ast), $('#scopes'), 0, 4)
 
 render(ast, $('#rendered'));
 
