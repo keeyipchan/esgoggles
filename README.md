@@ -3,7 +3,8 @@ esgoggles
 
 Browser ide for reading and exploring javascript code.
 
-Demo: http://keeyipchan.github.com/esgoggles/demo/index.html (use Chrome)
+Demo 1 -- style 1: http://keeyipchan.github.com/esgoggles/demo/style1.html (use Chrome)
+Demo 2 -- style 2 with variable scopes: http://keeyipchan.github.com/esgoggles/demo/style2.html (use Chrome)
 
 ## Purpose
 
