@@ -690,7 +690,7 @@ es.toggle.closed {
 	border: solid 1px hsl(0,0%,70%);
 	overflow:hidden;
 	display:inline-block !important;
-	width: 18px;
+	width: 22px;
 	height: 18px;
 	position:relative;
 }
