@@ -30,19 +30,19 @@
 		].join(','),
 		hoistedBlockTypes = /^(?:For|If|While|Do)Statement$/,
 		lookupScope = $.map(varLookup, function(xs, type) { return hoistedBlockTypes.test(type) ? null : 'es.' + type }).join(',').replace(/(^,)|(,,)|(,$)/g, ''),
-		blockTypes = $.map(varLookup, function(xs, type) { return 'es.' + type }).join(','),
+		scopeTypes = $.map(varLookup, function(xs, type) { return 'es.' + type }).join(','),
 		cachedVarLookup = {}
 
 	$.each(varLookup, function(type,xs) {
 		cachedVarLookup[type] = xs.join(',')
 	})
 
-	function getVar($block, name, lookup) {
-		if (!$block.length)
+	function getVar($referenceScope, name, lookup) {
+		if (!$referenceScope.length)
 			return $()
 
-		var type = $block.data('type'),
-			$var = $block.find(lookup.replace(/{{name}}/g, name))
+		var type = $referenceScope.data('type'),
+			$var = $referenceScope.find(lookup.replace(/{{name}}/g, name))
 
 		return $var
 	}
@@ -58,42 +58,46 @@
 	}
 
 	function findVariables($ast) {
-		var globalScopeId = 0
 
+		// Pass 1, identify: .scope, assign data-scope-id
+		var globalScopeId = 0
+		// TODO: Extract from Pass 2
+
+		// Pass 2, identify: .local-variable, .upper-variable
 		$ast.find('es.Identifier').each(function() {
 			var $id = $(this)
 
 			if (isObjectKey($id))
 				return
 
-			var $block = $id.closest(blockTypes),
-				blockType = $block.data('type'),
+			var $referenceScope = $id.closest(scopeTypes),
+				scopeType = $referenceScope.data('type'),
 				idName = $id.data('name'),
-				$var = getVar($block, idName, cachedVarLookup[blockType])
+				$var = getVar($referenceScope, idName, cachedVarLookup[scopeType])
 
-			while (!$var.length && hoistedBlockTypes.test(blockType)) {
-				$var = getVar($block, idName, cachedVarLookupForHoisted)
+			while (!$var.length && hoistedBlockTypes.test(scopeType)) {
+				$var = getVar($referenceScope, idName, cachedVarLookupForHoisted)
 				if (!$var.length) {
-					$block = $block.closest('es.BlockStatement').parent()
-					blockType = $block.data('type')
-					if (!hoistedBlockTypes.test(blockType)) {
-						$var = getVar($block, idName, cachedVarLookup[blockType])
+					$referenceScope = $referenceScope.closest('es.BlockStatement').parent()
+					scopeType = $referenceScope.data('type')
+					if (!hoistedBlockTypes.test(scopeType)) {
+						$var = getVar($referenceScope, idName, cachedVarLookup[scopeType])
 						break;
-					} else if (blockType === 'ForStatement') {
-						$var = getVar($block, idName, cachedVarLookup[blockType])
+					} else if (scopeType === 'ForStatement') {
+						$var = getVar($referenceScope, idName, cachedVarLookup[scopeType])
 					}
 				}
 			}
 
 			if ($var.length) {
+				// Resolve .local-variable
+
 				var $scope = $var.data('scope')
 				if (!$scope) {
-					if (blockType === 'FunctionDeclaration' || hoistedBlockTypes.test(blockType)) {
-						// Apparently $block.closest(lookupScope) returns itself if
-						// the selector has multiple conditions ('ie: es.FunctionDeclaration, es.Program')
-						$scope = $block.parent().closest(lookupScope)
+					if (scopeType === 'FunctionDeclaration' || hoistedBlockTypes.test(scopeType)) {
+						$scope = $referenceScope.parent().closest(lookupScope)
 					} else {
-						$scope = $block
+						$scope = $referenceScope
 					}
 					$var.data('scope', $scope.addClass('scope'))
 				}
@@ -101,6 +105,7 @@
 				if (!scopeId)
 					$scope.attr('data-scope-id', scopeId = ++globalScopeId)
 
+				/*
 				var varLocator = '[data-scope-id="' + scopeId + '"][name="' + $id.data('name') + '"]'
 
 				if ($scope.find(varLocator).length === 0) {
@@ -109,6 +114,7 @@
 						$scope.find(varLocator).addClass('highlighted-variable')
 					})
 				}
+				*/
 
 				$id
 					.addClass('local-variable')
@@ -117,13 +123,39 @@
 				$var
 					.addClass('declared')
 					.attr('data-scope-id', scopeId)
-					.attr('data-count', ($var.attr('data-count') || 0) + 1)
+					.attr('data-count', ($var.data('count') || 0) + 1)
 
 				if (!$id.is($var)) {
 					$id.addClass('reference')
 				}
 			} else {
-				$id.addClass('upper-variable')
+				$id.addClass('reference upper-variable')
+			}
+		})
+
+		// Pass 3, resolve .upper-variable
+		$ast.find('.reference.upper-variable').each(function() {
+			var $ref = $(this),
+				// Start from 2nd closest parent scope (grandfather)
+				$scope = $ref.closest('.scope').parent().closest('.scope'),
+				name = $ref.data('name')
+
+			for (var $upperVar = $(), varLocator; $scope.length && !$upperVar.length; $scope = $scope.parent().closest('.scope')) {
+				varLocator = '.declared[data-scope-id="' + $scope.data('scope-id') + '"][name="' + name + '"]'
+				console.log('locator',varLocator)
+				$upperVar = $scope.find(varLocator)
+			}
+
+			if ($upperVar.length) {
+				$ref
+					.attr('data-scope-id', $upperVar.data('scope-id'))
+
+				$upperVar
+					.attr('data-count', ($upperVar.data('count') || 0) + 1)
+			} else {
+				$ref
+					.addClass('undefined')
+					.attr('data-scope-id', 1)
 			}
 		})
 	}

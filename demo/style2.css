@@ -1,14 +1,14 @@
-es.local-variable.declared[data-count="1"] code {
+es.declared[data-count="1"] code {
 	color: hsl(50,30%,60%);
 	text-decoration: line-through;
 	font-style: italic;
 	text-shadow: 0 1px 3px black;
 }
-es.local-variable.declared code {
+es.declared code {
 	font-weight: bold;
 }
-es.local-variable {
-	color: green;
+es.reference,
+es.declared {
 	margin: 0 2px;
 	border-radius: 2px;
 	padding: 0 2px;
@@ -17,20 +17,31 @@ es.local-variable {
 	min-width: 12px;
 	text-align: center;
 }
-es.local-variable code {
+es.local-variable {
+	color: green;
+}
+es.reference code,
+es.declared code {
 	font-family: verdana;
 }
-es.local-variable:hover {
+es.reference:hover,
+es.declared:hover {
 	background: white;
 	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
 }
-es.highlighted-variable.local-variable {
+es.highlighted-identifier {
 	color: white;
 	background: green;
 	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
 }
-es.upper-variable {
+es.reference.upper-variable {
 	color: yellow;
+	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
+	margin: 0 2px;
+}
+
+es.reference.undefined {
+	color: red;
 	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
 	margin: 0 2px;
 }
