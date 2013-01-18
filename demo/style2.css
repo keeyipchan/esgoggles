@@ -1,0 +1,260 @@
+es.local-variable.declared[data-count="1"] code {
+	color: hsl(50,30%,60%);
+	text-decoration: line-through;
+	font-style: italic;
+	text-shadow: 0 1px 3px black;
+}
+es.local-variable.declared code {
+	font-weight: bold;
+}
+es.local-variable {
+	color: green;
+	margin: 0 2px;
+	border-radius: 2px;
+	padding: 0 2px;
+	display: inline-block;
+	vertical-align: top;
+	min-width: 12px;
+	text-align: center;
+}
+es.local-variable code {
+	font-family: verdana;
+}
+es.local-variable:hover {
+	background: white;
+	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
+}
+es.highlighted-variable.local-variable {
+	color: white;
+	background: green;
+	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
+}
+es.upper-variable {
+	color: yellow;
+	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
+	margin: 0 2px;
+}
+
+pre,
+ast {
+	border: solid 1px hsl(0,0%,80%);
+	padding: 2px;
+	border-radius: 4px;
+	background:hsl(30,20%,90%);
+	color: hsl(30,10%,50%);
+	display: inline-block;
+	vertical-align:top;
+	white-space:pre-wrap;
+	line-height: 2.0;
+	word-spacing: 2px;
+	margin: 2px;
+}
+es {
+}
+es.ExpressionStatement {
+}
+es.IfStatement {
+	display: block;
+	border: solid 1px hsl(180,5%,60%);
+	background: hsl(180,5%,80%);
+	border-radius: 8px;
+	margin: 4px 0;
+}
+es.BlockStatement {
+	display: inline-block;
+	vertical-align: top;
+	background: hsla(0,0%,0%,0.05);
+	margin: 0px;
+	padding: 0 8px;
+}
+es.AssignmentExpression,
+es.FunctionExpression,
+es.FunctionDeclaration,
+es.ForStatement,
+es.WhileStatement,
+es.IfStatement {
+	white-space: nowrap;
+}
+es.AssignmentExpression > *,
+es.ForStatement > *,
+es.IfStatement > * {
+	display: inline-block;
+	vertical-align: top;
+}
+es.MemberExpression {
+	/*
+	border: solid 1px hsl(0,0%,80%);
+	padding: 4px;
+	box-shadow: 0 1px 3px hsla(0,0%,0%,0.3);
+	background: hsla(0,0%,100%,0.4);
+	display: inline-block;
+	border-radius: 4px;
+	*/
+}
+es.FunctionExpression {
+	box-shadow: inset 0 2px 3px hsla(0,0%,0%,0.3);
+	display: inline-block;
+	background: hsl(200,20%,80%);
+	color: hsl(200,10%,40%);
+	border: solid 1px hsl(0,0%,50%);
+	vertical-align: top;
+	border-radius: 4px;
+	margin: 4px;
+}
+
+es.FunctionDeclaration {
+	box-shadow: 0 2px 3px hsla(0,0%,0%,0.3);
+	background: hsl(50,20%,80%);
+	color: hsl(50,10%,40%);
+	display: block;
+	border: solid 1px hsl(50,50%,50%);
+	border-radius: 4px;
+	margin: 4px;
+}
+
+.VariableDeclarator > code, .AssignmentExpression > code {
+	margin: 0 4px;
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+}
+
+es.Identifier {
+}
+
+ast comment {
+	background: hsl(30,30%,80%);
+	color: hsl(0,0%,40%);
+	vertical-align:top;
+}
+ast comment.Line {
+	display: block;
+	margin: 12px 0 0 0;
+	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
+	padding: 0 8px;
+}
+ast comment.Line + comment.Line {
+	margin: 0;
+}
+ast comment.Block {
+	box-shadow: 0 2px 3px 1px hsla(0,0%,0%,0.2), 0 0 1px 1px hsla(0,0%,0%,0.2);
+	display: inline-block;
+	vertical-align:top;
+	border-radius: 20px;
+	padding: 4px 8px;
+	margin: 2px;
+	white-space: pre;
+	line-height: 1;
+	word-spacing: 0;
+	letter-spacing: 0;
+	font-family: 'courier new';
+}
+
+es.FunctionDeclaration > code,
+es.FunctionExpression > code,
+es.IfStatement > code,
+es.ForStatement > code
+{
+	margin: 0 4px;
+}
+code:empty {
+	display:none;
+}
+es.BlockStatement > code {
+	display: none;
+}
+es.ObjectExpression {
+	display: inline-block;
+	border: solid 1px hsl(0,0%,60%);
+	background: hsl(0,0%,80%);
+}
+es.body_ {
+	display: block;
+}
+ast code {
+}
+
+es.ObjectExpression {
+	display: inline-block;
+	vertical-align: top;
+	border-collapse: collapse;
+	padding: 4px;
+	margin: 4px;
+	border: solid 2px hsl(0,0%,50%);
+	border-radius: 12px;
+	min-height: 20px;
+	min-width: 20px;
+}
+es.ObjectExpression > es.Property > es.ObjectExpression {
+	display: inline-block;
+	padding: 4px;
+	margin: 6px 0 0 10px;
+	border: solid 2px hsl(0,0%,50%);
+}
+es.ObjectExpression > code,
+es.ObjectExpression > es.Property > code
+{
+	display: none;
+}
+es.ObjectExpression > es.Property {
+	display: table-row;
+	background: hsl(0,0%,80%);
+	color: hsl(0,0%,40%);
+}
+es.ObjectExpression > es.Property:first-of-type > es {
+	border-top: 0;
+}
+es.ObjectExpression > es.Property:last-of-type > es {
+	border-bottom: 0;
+}
+es.ObjectExpression > es.Property > es.key {
+	color: hsl(0,0%,50%);
+	font-weight: bold;
+	text-align: right;
+}
+es.ObjectExpression > es.Property > es {
+	display: table-cell;
+	padding: 4px 8px;
+	border-top: solid 1px hsl(0,0%,70%);
+	border-bottom: solid 1px hsl(0,0%,70%);
+	vertical-align: top;
+}
+
+es.highlighted-3 {
+	border: solid 3px hsl(200,50%,50%);
+	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
+	background:blue;
+	color: hsl(0,0%,50%);
+	padding: 4px;
+	display: inline-block;
+	border-radius:2px 12px;
+}
+es.highlighted-2 {
+	border: solid 3px hsl(200,50%,50%);
+	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
+	background:yellow;
+	color: hsl(0,0%,50%);
+	padding: 4px;
+	display: inline-block;
+	border-radius:2px 12px;
+}
+
+es.highlighted {
+	border: solid 3px hsl(200,50%,50%);
+	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
+	background:hsl(0,0%,85%);
+	color: hsl(0,0%,50%);
+	padding: 4px;
+	display: inline-block;
+	border-radius:2px 12px;
+}
+es.marked-for-removal {
+	border: solid 3px hsl(30,80%,50%);
+	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
+	background:hsl(0,0%,85%);
+	color: hsl(0,0%,50%);
+	padding: 4px;
+	display: inline-block;
+	border-radius:2px 12px;
+}
+

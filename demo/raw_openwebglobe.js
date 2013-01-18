@@ -38,43 +38,43 @@ function raw_openwebglobe(){
 		<class><b>Engine</b>
 			<variable><b>scene</b>
 				<class><b>SceneGraph</b>
-					<method>traverse</method>
-					<method>render</method>
+					<method><b>traverse</b></method>
+					<method><b>render</b></method>
 				</class>
 			</variable>
 
-			<variable><b>vecMeshes (cached meshes)</b>
+			<variable><b>vecMeshes[] (cached meshes)</b>
 				<class><b>Mesh</b>
-					<method>load</method>
-					<method>unload</method>
+					<method><b>load</b></method>
+					<method><b>unload</b></method>
 					<variable><b>texture</b>
-						<class>Texture</class>
+						<class><b>Texture</b></class>
 					</variable>
 				</class>
 			</variable>
 
-			<variable><b>cachedtextures</b>
+			<variable><b>cachedtextures[]</b>
 				<class><b>Texture</b>
-					<method>load</method>
-					<method>unload</method>
+					<method><b>load</b></method>
+					<method><b>unload</b></method>
 				</class>
 			</variable>
 
 			<variable><b>systemfont</b>
 				<class><b>Font</b>
 					<variable><b>texture</b>
-						<class>Texture</class>
+						<class><b>Texture</b></class>
 					</variable>
-					<method>load</method>
-					<method>unload</method>
+					<method><b>load</b></method>
+					<method><b>unload</b></method>
 				</class>
 			</variable>
 			<variable><b>shadermanager</b>
-				<class>ShaderManager</class>
+				<class><b>ShaderManager</b></class>
 			</variable>
 			<method><b>attachWindow</b>
-				<method>attachMouse</method>
-				<method>attachKeyboard</method>
+				<method><b>attachMouse</b></method>
+				<method><b>attachKeyboard</b></method>
 			</method>
 		</class>
 	</variable>

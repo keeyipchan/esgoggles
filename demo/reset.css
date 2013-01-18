@@ -1,0 +1,14 @@
+code {
+	font-family: Courier;
+}
+
+* {
+	box-sizing: border-box !important;
+}
+body {
+	padding-bottom: 400px;
+	font-family: verdana;
+	font-size: 12px;
+	background:hsl(0,0%,60%);
+}
+

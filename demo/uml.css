@@ -1,0 +1,46 @@
+program,class,variable,event,method {
+	font-family:verdana;
+	letter-spacing: 1px;
+	display:inline-block;
+	vertical-align:top;
+	padding: 4px;
+	box-shadow: 0 1px 3px hsla(0,0%,0%,0.3), 0 0 2px hsl(0,0%,90%);
+	margin: 8px;
+	white-space:normal;
+}
+program > b,class > b,variable > b,event > b,method > b {
+	font-weight:normal;
+	display:block;
+	margin: 8px;
+}
+program {
+	max-width:600px;
+	background: hsla(0,0%,50%,0.2);
+	border: solid 1px hsl(0,0%,30%);
+	padding: 12px;
+}
+method {
+	background:hsl(150,30%,40%);
+	color: white;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px 0 hsla(0,0%,0%,0.6), 0 0 2px 1px hsl(0,0%,90%);
+}
+method b:after {
+	content: '()';
+}
+class {
+	background:hsl(200,30%,50%);
+	color: white;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px 0 hsla(0,0%,0%,0.6), 0 0 2px 1px hsl(0,0%,90%);
+}
+variable {
+	background:hsl(30,10%,85%);
+	color: hsl(0,0%,30%);
+	border-radius: 8px;
+}
+event {
+	background:hsl(80,20%,80%);
+	color: hsl(0,0%,30%);
+}
+

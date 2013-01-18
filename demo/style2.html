@@ -10,294 +10,11 @@
 	define('estraverse', estraverse);
 	</script>
     <script src="escope.js"></script>
+    <script src="findVariables.js"></script>
     <script src="raw_openwebglobe.js"></script>
-	<style>
-code {
-	font-family: Courier;
-}
-program,class,variable,event,method {
-	font-family:verdana;
-	letter-spacing: 1px;
-	display:inline-block;
-	vertical-align:top;
-	padding: 4px;
-	box-shadow: 0 1px 3px hsla(0,0%,0%,0.3), 0 0 2px hsl(0,0%,90%);
-	margin: 8px;
-	white-space:normal;
-}
-program > b,class > b,variable > b,event > b,method > b {
-	font-weight:normal;
-	display:block;
-	margin: 8px;
-}
-program {
-	max-width:600px;
-	background: hsla(0,0%,50%,0.2);
-	border: solid 1px hsl(0,0%,30%);
-	padding: 12px;
-}
-method {
-	background:hsl(150,30%,40%);
-	color: white;
-	border-radius: 4px;
-	box-shadow: 0 2px 3px 0 hsla(0,0%,0%,0.6), 0 0 2px 1px hsl(0,0%,90%);
-}
-class {
-	background:hsl(200,30%,50%);
-	color: white;
-	border-radius: 4px;
-	box-shadow: 0 2px 3px 0 hsla(0,0%,0%,0.6), 0 0 2px 1px hsl(0,0%,90%);
-}
-variable {
-	background:hsl(30,10%,85%);
-	color: hsl(0,0%,30%);
-	border-radius: 8px;
-}
-event {
-	background:hsl(80,20%,80%);
-	color: hsl(0,0%,30%);
-}
-
-* {
-	box-sizing: border-box !important;
-}
-body {
-	padding-bottom: 400px;
-	font-family: verdana;
-	font-size: 12px;
-	background:hsl(0,0%,60%);
-}
-pre,
-ast {
-	border: solid 1px hsl(0,0%,80%);
-	padding: 2px;
-	border-radius: 4px;
-	background:hsl(30,20%,90%);
-	color: hsl(30,10%,50%);
-	display: inline-block;
-	vertical-align:top;
-	overflow:auto;
-	white-space:pre-wrap;
-	line-height: 2.0;
-	word-spacing: 2px;
-	margin: 2px;
-}
-es {
-}
-es.ExpressionStatement {
-}
-es.IfStatement {
-	display: block;
-	border: solid 1px hsl(180,5%,60%);
-	background: hsl(180,5%,80%);
-	border-radius: 8px;
-	margin: 4px 0;
-}
-es.BlockStatement {
-	display: inline-block;
-	vertical-align: top;
-	background: hsla(0,0%,0%,0.05);
-	margin: 0px;
-	padding: 0 8px;
-}
-es.ForStatement,
-es.IfStatement {
-	white-space: nowrap;
-}
-es.ForStatement > *,
-es.IfStatement > * {
-	display: inline-block;
-	vertical-align: top;
-	white-space: normal;
-}
-es.MemberExpression {
-	/*
-	border: solid 1px hsl(0,0%,80%);
-	padding: 4px;
-	box-shadow: 0 1px 3px hsla(0,0%,0%,0.3);
-	background: hsla(0,0%,100%,0.4);
-	display: inline-block;
-	border-radius: 4px;
-	*/
-}
-es.FunctionExpression {
-	box-shadow: inset 0 2px 3px hsla(0,0%,0%,0.3);
-	display: inline-block;
-	background: hsl(200,20%,80%);
-	color: hsl(200,10%,40%);
-	border: solid 1px hsl(0,0%,50%);
-	vertical-align: top;
-	border-radius: 4px;
-	margin: 4px;
-}
-
-es.FunctionDeclaration {
-	box-shadow: 0 2px 3px hsla(0,0%,0%,0.3);
-	background: hsl(50,20%,80%);
-	color: hsl(50,10%,40%);
-	display: block;
-	border: solid 1px hsl(50,50%,50%);
-	border-radius: 4px;
-	margin: 4px;
-}
-
-es.Identifier {
-}
-es.local-variable {
-	color: green;
-	padding: 0 2px;
-	background:white;
-	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
-	margin: 0 2px;
-	border-radius: 2px;
-}
-es.upper-variable {
-	color: yellow;
-	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
-	margin: 0 2px;
-}
-es.hovered-variable.local-variable {
-	color: white;
-	background: green;
-}
-
-ast comment {
-	background: hsl(30,30%,80%);
-	color: hsl(0,0%,40%);
-	vertical-align:top;
-}
-ast comment.Line {
-	display: block;
-	margin: 12px 0 0 0;
-	box-shadow: 0 1px 1px hsla(0,0%,0%,0.2);
-	padding: 0 8px;
-}
-ast comment.Line + comment.Line {
-	margin: 0;
-}
-ast comment.Block {
-	box-shadow: 0 2px 3px 1px hsla(0,0%,0%,0.2), 0 0 1px 1px hsla(0,0%,0%,0.2);
-	display: inline-block;
-	vertical-align:top;
-	border-radius: 20px;
-	padding: 4px 8px;
-	margin: 2px;
-	white-space: pre;
-	line-height: 1;
-	word-spacing: 0;
-	letter-spacing: 0;
-	font-family: 'courier new';
-}
-
-es.FunctionDeclaration > code,
-es.FunctionExpression > code,
-es.IfStatement > code,
-es.ForStatement > code
-{
-	margin: 0 4px;
-}
-code:empty {
-	display:none;
-}
-es.BlockStatement > code {
-	display: none;
-}
-es.ObjectExpression {
-	display: inline-block;
-	border: solid 1px hsl(0,0%,60%);
-	background: hsl(0,0%,80%);
-}
-es.body_ {
-	display: block;
-}
-ast code {
-	white-space: normal;
-}
-
-es.ObjectExpression {
-	display: inline-block;
-	vertical-align: top;
-	border-collapse: collapse;
-	padding: 4px;
-	margin: 4px;
-	border: solid 2px hsl(0,0%,50%);
-	border-radius: 12px;
-	min-height: 20px;
-	min-width: 20px;
-}
-es.ObjectExpression > es.Property > es.ObjectExpression {
-	display: inline-block;
-	padding: 4px;
-	margin: 6px 0 0 10px;
-	border: solid 2px hsl(0,0%,50%);
-}
-es.ObjectExpression > code,
-es.ObjectExpression > es.Property > code
-{
-	display: none;
-}
-es.ObjectExpression > es.Property {
-	display: table-row;
-	background: hsl(0,0%,80%);
-	color: hsl(0,0%,40%);
-}
-es.ObjectExpression > es.Property:first-of-type > es {
-	border-top: 0;
-}
-es.ObjectExpression > es.Property:last-of-type > es {
-	border-bottom: 0;
-}
-es.ObjectExpression > es.Property > es.key {
-	color: hsl(0,0%,50%);
-	font-weight: bold;
-	text-align: right;
-}
-es.ObjectExpression > es.Property > es {
-	display: table-cell;
-	padding: 4px 8px;
-	border-top: solid 1px hsl(0,0%,70%);
-	border-bottom: solid 1px hsl(0,0%,70%);
-	vertical-align: top;
-}
-
-es.highlighted-3 {
-	border: solid 3px hsl(200,50%,50%);
-	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
-	background:blue;
-	color: hsl(0,0%,50%);
-	padding: 4px;
-	display: inline-block;
-	border-radius:2px 12px;
-}
-es.highlighted-2 {
-	border: solid 3px hsl(200,50%,50%);
-	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
-	background:yellow;
-	color: hsl(0,0%,50%);
-	padding: 4px;
-	display: inline-block;
-	border-radius:2px 12px;
-}
-
-es.highlighted {
-	border: solid 3px hsl(200,50%,50%);
-	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
-	background:hsl(0,0%,85%);
-	color: hsl(0,0%,50%);
-	padding: 4px;
-	display: inline-block;
-	border-radius:2px 12px;
-}
-es.marked-for-removal {
-	border: solid 3px hsl(30,80%,50%);
-	box-shadow: 0 0 3px white, inset 0 0 3px white, 0 0 2px 2px orange, 0 2px 1px 1px hsla(0,0%,0%,0.4);
-	background:hsl(0,0%,85%);
-	color: hsl(0,0%,50%);
-	padding: 4px;
-	display: inline-block;
-	border-radius:2px 12px;
-}
-	</style>
+	<link rel='stylesheet' href='reset.css'/>
+	<link rel='stylesheet' href='uml.css'/>
+	<link rel='stylesheet' href='style2.css'/>
 </head>
 <body>
 <script>
@@ -526,92 +243,53 @@ function markConsoleCallsForRemoval($ast) {
 	markFunctionCalls($ast, 'marked-for-removal', ['window.console.*', 'console.*'])
 }
 
-var varLookup = {
-		Program: '> es.body_.VariableDeclaration',
-		FunctionDeclaration: '> es.body > es.VariableDeclaration',
-		FunctionExpression: '> es.body > es.VariableDeclaration',
-		CatchClause: '> es.body > es.VariableDeclaration',
-		ForStatement: '> es.init.VariableDeclaration',
-	},
-	lookup = $.map(varLookup, function(x,k) { return 'es.' + k }).join(','),
-	lookupHoisted = lookup.replace(',es.ForStatement', ''),
-	getVar = function getVar($scope, name) {
-		if (!$scope.length)
-			return $()
-
-		var t = $scope.data('type'),
-			$var = $scope.find(varLookup[t]).find('> es.VariableDeclarator > es.Identifier.id[name=' + name + ']')
-
-		if (!$var.length && varLookup[t].match('es.body ')) {
-			$var = $scope.find([
-				'> es.params_.Identifier[name=' + name + ']',
-				'> es.param.Identifier[name=' + name + ']'].join(','))
-		}
-
-		return $var
-	}
+function Benchmark() {
+	this.results = []
+}
+Benchmark.prototype.report = function() {
+	$.each(this.results, function(_, result) {
+		console.log(result.name, result.duration, 'ms')
+	})
+	return this
+}
+Benchmark.prototype.time = function(name, f) {
+	var t0 = new Date().valueOf()
+	f()
+	var t1 = new Date().valueOf()
+	this.results.push({
+		name: name,
+		duration: t1 - t0
+	})
+	return this
+}
 
 ;(function() {
 	var raw = raw_openwebglobe.toString().replace(/^function raw_openwebglobe\(\)\{|\}$/g,''),
-		t0 = new Date().valueOf(),
-		ast = esprima.parse(raw, {
-			range: true,
-			loc: false,
-			comment: true,
-			tolerant: false
-		}),
-		t1 = new Date().valueOf(),
-		$ast = ast$(raw, ast),
-		t2 = new Date().valueOf(),
-		scopeId = 0
+		benchmark = new Benchmark(),
+		ast,
+		$ast
 
-	$ast.find('es.Identifier').each(function() {
-		var $id = $(this)
-		if ($id.closest('es.MemberExpression.computed-false').find('> es.property').is($id))
-			return
-		if ($id.closest('es.Property').find('> es.key').is($id))
-			return
-		var $scope = $id.closest(lookup),
-			$var = getVar($scope, $id.data('name'))
-
-		if (!$var.length && $scope.data('type') === 'ForStatement') {
-			$scope = $id.closest(lookupHoisted)
-			$var = getVar($scope, $id.data('name'))
-		}
-
-		if (!$scope.attr('id'))
-			$scope.attr('id', 'scope-' + scopeId++)
-
-		if ($var.length) {
-			var locator = $scope.attr('id') + '-' + $id.data('name')
-
-			if ($scope.find('.' + locator).length === 0) {
-				$scope.on('hover', '.' + locator, function() {
-					$('.hovered-variable').removeClass('hovered-variable')
-					$scope.find('.' + locator).addClass('hovered-variable')
-				})
-			}
-
-			$id
-				.addClass('local-variable')
-				.addClass(locator)
-			$var
-				.addClass(locator)
-		} else {
-			$id.addClass('upper-variable')
-		}
-	})
-
-	var t3 = new Date().valueOf()
+	benchmark
+		.time('ast', function() {
+			ast = esprima.parse(raw, {
+				range: true,
+				loc: false,
+				comment: true,
+				tolerant: false
+			})
+		})
+		.time('ast$', function() {
+			$ast = ast$(raw, ast)
+		})
+		.time('findVariables', function() {
+			findVariables($ast)
+		})
+		.report()
 
 	//markConsoleCallsForRemoval($ast)
 	//markFunctionCalls($ast, 'highlighted', ['log'])
 
 	$ast.appendTo('body')
-
-	console.log('esprima.parse', t1-t0)
-	console.log('ast$', t2-t1)
-	console.log('getVar', t3-t2)
 })();
 
 $('<hr/>').appendTo('body');
