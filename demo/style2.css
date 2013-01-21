@@ -1,8 +1,5 @@
 es.declared[data-count="1"] code {
-	color: hsl(50,30%,60%);
-	text-decoration: line-through;
-	font-style: italic;
-	text-shadow: 0 1px 3px black;
+	opacity: 0.5;
 }
 es.declared code {
 }
