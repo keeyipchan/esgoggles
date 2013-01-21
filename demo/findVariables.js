@@ -165,17 +165,20 @@
 			if (!$id.hasClass('undefined-variable'))
 				return
 
-			var $references = $ast.find('es.undefined-variable[data-scope-id="1"][name="' + name + '"]')
+			var $references = $ast.find('es.undefined-variable[name="' + name + '"]')
 				.removeClass('undefined-variable')
 		})
 
-		// Pass 5, resolve js builtins
-		var builtinsLookup = $.map(['Date','Array','Math'], function(name) { return 'es.undefined-variable[name="' + name + '"]' }).join(',')
-		$ast.find(builtinsLookup).removeClass('undefined-variable').addClass('js-builtin')
+		function resolveBuiltins(className, names) {
+			var lookup = $.map(names, function(name) { return 'es.undefined-variable[name="' + name + '"]' }).join(',')
+			$ast.find(lookup).removeClass('undefined-variable').addClass(className)
+		}
 
+		// TODO: Make this configurable
+		// Pass 5, resolve js builtins
+		resolveBuiltins('js-builtin', ['Date','Array','Math'])
 		// Pass 6, resolve browser builtins
-		var browserBuiltinsLookup = $.map(['window','setInterval', 'setTimeout','alert','console','document', 'history'], function(name) { return 'es.undefined-variable[name="' + name + '"]' }).join(',')
-		$ast.find(browserBuiltinsLookup).removeClass('undefined-variable').addClass('browser-builtin')
+		resolveBuiltins('browser-builtin', ['window','setInterval', 'setTimeout','alert','console','document', 'history'])
 	}
 
 	window.findVariables = findVariables
