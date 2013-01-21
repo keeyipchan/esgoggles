@@ -5,7 +5,6 @@ es.declared[data-count="1"] code {
 	text-shadow: 0 1px 3px black;
 }
 es.declared code {
-	font-weight: bold;
 }
 es.reference,
 es.declared {
@@ -17,8 +16,56 @@ es.declared {
 	min-width: 12px;
 	text-align: center;
 }
+
+es.highlighted-identifier {
+	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
+}
 es.local-variable {
-	color: green;
+	color: hsl(100,70%,30%);
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+}
+es.local-variable.highlighted-identifier {
+	color: white;
+	background: hsl(100,70%,30%);
+}
+es.shared-variable {
+	color: hsl(150,70%,30%);
+}
+es.shared-variable.highlighted-identifier {
+	color: white;
+	background: hsl(150,70%,30%);
+}
+es.global-variable {
+	color: yellow;
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+	margin: 0 1px;
+}
+es.global-variable.highlighted-identifier {
+	color: black;
+	background: yellow;
+}
+es.global-variable.js-builtin {
+	color: black;
+}
+es.global-variable.js-builtin.highlighted-identifier {
+	color: white;
+	background: black;
+}
+es.global-variable.browser-builtin {
+	color: purple;
+}
+es.global-variable.browser-builtin.highlighted-identifier {
+	color: white;
+	background: purple;
+}
+es.undefined-variable {
+	color: red;
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+	margin: 0 1px;
+}
+es.undefined-variable.highlighted-identifier {
+	color: white;
+	background: red;
 }
 es.reference code,
 es.declared code {
@@ -26,24 +73,8 @@ es.declared code {
 }
 es.reference:hover,
 es.declared:hover {
-	background: white;
-	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
-}
-es.highlighted-identifier {
-	color: white;
-	background: green;
-	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
-}
-es.reference.upper-variable {
-	color: yellow;
-	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
-	margin: 0 2px;
-}
-
-es.reference.undefined {
-	color: red;
-	text-shadow: 0 1px 1px hsla(0,0%,0%,0.9);
-	margin: 0 2px;
+	cursor:pointer;
+	text-shadow: 0 0 2px hsla(0,0%,100%,1);
 }
 
 pre,

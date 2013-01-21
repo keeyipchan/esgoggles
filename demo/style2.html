@@ -46,6 +46,9 @@
 		.time('findVariables', function() {
 			findVariables($ast)
 		})
+		.time('escope', function() {
+			escope.analyze(ast)
+		})
 		.report()
 
 	//markConsoleCallsForRemoval($ast)
