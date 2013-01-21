@@ -1,5 +1,5 @@
-es.declared[data-count="1"] code {
-	opacity: 0.5;
+es.declared[data-count="1"] {
+	opacity: 0.35;
 }
 es.declared code {
 }
