@@ -17,17 +17,10 @@ function ast$(raw, ast) {
 		spaces = '    ',
 		indent = '\n' + spaces,
 		doubleIndent = '\n' + spaces + spaces,
-		header = '\n------------------------',
-		extractQueue = []
-
-	function processExtractQueue() {
-		if (extractQueue.length)
-			extractComments(extractQueue.shift(), processExtractQueue)
-	}
+		header = '\n------------------------'
 
 	// Need to optimize this, super slow..
-	function extractComments($code, next) {
-		var t0 = new Date().valueOf()
+	function extractComments($code) {
 		for (var i=0; i < ast.comments.length; ) {
 			var comment = ast.comments[i],
 				text
@@ -67,13 +60,11 @@ function ast$(raw, ast) {
 				i++
 			}
 		}
-		var t1 = new Date().valueOf()
-		//console.log('extract comment dt', t1-t0)
-
-		setTimeout(next,0)
 	}
 
-	var x = 0
+	var x = 0,
+		commentRegex = /\/\/|\/\*/
+
 	function recurse(n, $parent, classes, keySummary) {
 		var $es = $('<es>')
 			.appendTo($parent)
@@ -91,15 +82,18 @@ function ast$(raw, ast) {
 			})
 		}
 
-		$es.data('preceedingRawCode', raw.substring(x, n.range[0]))
+		var text
+		text = raw.substring(x, n.range[0])
+		$es.data('preceedingRawCode', text)
 
 		var $preceedingRawCode = $('<code>')
-			.text($es.data('preceedingRawCode'))
+			.text(text)
 			.data('range0', x)
 			.data('range1', n.range[0])
 			.insertBefore($es)
 
-		extractQueue.push($preceedingRawCode)
+		if (commentRegex.test(text))
+			extractComments($preceedingRawCode)
 
 		x = n.range[0]
 
@@ -130,22 +124,22 @@ function ast$(raw, ast) {
 		if (keySummary)
 			$es.attr('title', $es.attr('title') + header + '\n' + keySummary)
 
-		$es.data('trailingRawCode', raw.substring(x, n.range[1]))
+		text = raw.substring(x, n.range[1])
+		$es.data('trailingRawCode', text)
 
 		var $trailingRawCode = $('<code>')
-			.text($es.data('trailingRawCode'))
+			.text(text)
 			.data('range0', x)
 			.data('range1', n.range[1])
 			.appendTo($es)
 
-		extractQueue.push($trailingRawCode)
+		if (commentRegex.test(text))
+			extractComments($trailingRawCode)
 
 		x = n.range[1]
 	}
 
 	recurse(ast, $ast)
-
-	processExtractQueue()
 
 	return $ast
 }

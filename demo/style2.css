@@ -1,3 +1,63 @@
+es.FunctionExpression > es.BlockStatement {
+	display:none;
+}
+es.FunctionExpression.expanded > es.BlockStatement {
+	display:inline-block;
+}
+.ForStatement {
+	border: solid 1px black;
+}
+.ForStatement > .init,
+.ForStatement > .test,
+.ForStatement > .update {
+	border: solid 1px hsla(0,0%,0%,0.4);
+}
+.ForStatement > .BlockStatement.body {
+	display:block;
+}
+
+es.FunctionExpression {
+	position: relative;
+	overflow:hidden;
+	background: hsl(50,10%,80%);
+}
+es.FunctionExpression > * {
+	position:relative;
+}
+es.FunctionExpression:before {
+	content:'';
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	height:300px;
+	border-radius:4px 4px 0 0;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0.00, rgba(235,249,250,0.8)),
+		color-stop(0.06, rgba(235,249,250,0.3)),
+		color-stop(0.18, rgba(185,188,188,0.2)),
+		color-stop(1, rgba(185,188,188,0.0))
+	);
+}
+es.BlockStatement {
+	padding: 8px 12px !important;
+}
+es.LogicalExpression es.BinaryExpression > * {
+	display: inline-block;
+	margin: 0 8px;
+}
+es.LogicalExpression es.BinaryExpression {
+	border: solid 2px black;
+}
+es.LogicalExpression > * {
+	display: inline-block;
+	margin: 4px;
+}
+
+
 es.declared[data-count="1"] {
 	opacity: 0.35;
 }
@@ -19,22 +79,23 @@ es.highlighted-identifier {
 }
 es.local-variable {
 	color: hsl(100,70%,30%);
-	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.5);
 }
 es.local-variable.highlighted-identifier {
 	color: white;
 	background: hsl(100,70%,30%);
 }
 es.shared-variable {
-	color: hsl(150,70%,30%);
+	color: hsl(200,70%,40%);
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.5);
 }
 es.shared-variable.highlighted-identifier {
 	color: white;
-	background: hsl(150,70%,30%);
+	background: hsl(200,70%,40%);
 }
 es.global-variable {
 	color: yellow;
-	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.5);
 	margin: 0 1px;
 }
 es.global-variable.highlighted-identifier {
@@ -57,7 +118,7 @@ es.global-variable.browser-builtin.highlighted-identifier {
 }
 es.undefined-variable {
 	color: red;
-	text-shadow: 0 1px 1px hsla(0,0%,50%,0.9);
+	text-shadow: 0 1px 1px hsla(0,0%,50%,0.5);
 	margin: 0 1px;
 }
 es.undefined-variable.highlighted-identifier {
@@ -76,10 +137,10 @@ es.declared:hover {
 
 pre,
 ast {
-	border: solid 1px hsl(0,0%,80%);
+	/*border: solid 1px hsl(0,0%,80%);*/
 	padding: 2px;
 	border-radius: 4px;
-	background:hsl(30,20%,90%);
+	/*background:hsl(30,20%,90%);*/
 	color: hsl(30,10%,50%);
 	display: inline-block;
 	vertical-align:top;
@@ -88,16 +149,28 @@ ast {
 	word-spacing: 2px;
 	margin: 2px;
 }
+ast {
+}
 es {
 }
 es.ExpressionStatement {
 }
-es.IfStatement {
-	display: block;
-	border: solid 1px hsl(180,5%,60%);
-	background: hsl(180,5%,80%);
-	border-radius: 8px;
-	margin: 4px 0;
+es.LogicalExpression {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 200px;
+	white-space: normal;
+}
+.BlockStatement.body,
+.BlockStatement.alternate,
+.BlockStatement.consequent {
+	display: inline-block;
+	vertical-align: top;
+	background: hsla(0,0%,0%,0.05);
+}
+es.BlockStatement.alternate,
+	display:block !important;
+	margin:0;
 }
 es.BlockStatement {
 	display: inline-block;
@@ -131,11 +204,10 @@ es.MemberExpression {
 	*/
 }
 es.FunctionExpression {
-	box-shadow: inset 0 2px 3px hsla(0,0%,0%,0.3);
+	box-shadow: 0 1px 1px hsla(0,0%,0%,0.3);
 	display: inline-block;
-	background: hsl(200,20%,80%);
 	color: hsl(200,10%,40%);
-	border: solid 1px hsl(0,0%,50%);
+	border: solid 1px hsl(0,0%,60%);
 	vertical-align: top;
 	border-radius: 4px;
 	margin: 4px;
@@ -162,18 +234,21 @@ es.Identifier {
 }
 
 ast comment {
-	background: hsl(30,30%,80%);
-	color: hsl(0,0%,40%);
 	vertical-align:top;
+	color: hsl(0, 0%, 40%);
+	font-family:georgia;
+	line-height: 1.7;
+	font-size: 16px;
+	opacity: 0.6;
 }
 ast comment.Line {
-	display: block;
-	margin: 12px 0 0 0;
-	box-shadow: 0 1px 2px hsla(0,0%,0%,0.4);
-	padding: 0 8px;
+	display:inline-block;
+	vertical-align:top;
+	margin: 4px ;
+	white-space:normal;
 }
 ast comment.Line + comment.Line {
-	margin: 0;
+	display:block;
 }
 ast comment.Block {
 	box-shadow: 0 2px 3px 1px hsla(0,0%,0%,0.2), 0 0 1px 1px hsla(0,0%,0%,0.2);
@@ -200,7 +275,6 @@ code:empty {
 	display:none;
 }
 es.BlockStatement > code {
-	display: none;
 }
 es.ObjectExpression {
 	display: inline-block;
@@ -233,12 +307,12 @@ es.ObjectExpression > es.Property > es.ObjectExpression {
 es.ObjectExpression > code,
 es.ObjectExpression > es.Property > code
 {
-	display: none;
 }
 es.ObjectExpression > es.Property {
-	display: table-row;
+	display:block;
 	background: hsl(0,0%,80%);
 	color: hsl(0,0%,40%);
+	margin-bottom: 12px;
 }
 es.ObjectExpression > es.Property:first-of-type > es {
 	border-top: 0;
@@ -252,10 +326,7 @@ es.ObjectExpression > es.Property > es.key {
 	text-align: right;
 }
 es.ObjectExpression > es.Property > es {
-	display: table-cell;
 	padding: 4px 8px;
-	border-top: solid 1px hsl(0,0%,70%);
-	border-bottom: solid 1px hsl(0,0%,70%);
 	vertical-align: top;
 }
 
@@ -297,3 +368,12 @@ es.marked-for-removal {
 	border-radius:2px 12px;
 }
 
+es.BlockStatement.consequent + code {
+	display: block;
+}
+es.IfStatement {
+	border: solid 1px hsl(180,5%,60%);
+	background: hsla(180,5%,80%,0.4);
+	border-radius: 8px;
+	margin: 12px 0;
+}

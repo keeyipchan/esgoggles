@@ -15,6 +15,9 @@
     <script src="markFunctionCalls.js"></script>
     <script src="Ui_HighlightVariableReferences.js"></script>
     <script src="ast$.js"></script>
+    <script src="raw_ast$.js"></script>
+    <script src="raw_backbone.js"></script>
+    <script src="raw_findVariables.js"></script>
     <script src="raw_openwebglobe.js"></script>
 	<link rel='stylesheet' href='reset.css'/>
 	<link rel='stylesheet' href='uml.css'/>
@@ -25,8 +28,8 @@
 
 
 
-;(function() {
-	var raw = raw_openwebglobe.toString().replace(/^function raw_openwebglobe\(\)\{|\}$/g,''),
+function style2(FILE) {
+	var raw = window[FILE].toString().replace(new RegExp('^function '+FILE.replace('$','\\$')+'\\(\\)\\{|\\}$', 'g'),''),
 		benchmark = new Benchmark(),
 		ast,
 		$ast
@@ -43,10 +46,16 @@
 		.time('ast$', function() {
 			$ast = ast$(raw, ast)
 		})
-		.time('findVariables', function() {
-			findVariables($ast)
-		})
-		.time('escope', function() {
+
+	setTimeout(function() {
+		new Benchmark()
+			.time('findVariables', function() {
+				findVariables($ast)
+			})
+			.report()
+	}, 0)
+
+	benchmark.time('escope', function() {
 			escope.analyze(ast)
 		})
 		.report()
@@ -57,9 +66,21 @@
 	initUi_HighlightVariableReferences($ast)
 
 	$ast.appendTo('body')
-})();
+}
 
-$('<hr/>').appendTo('body');
+$('body').on('click', 'es.FunctionExpression', function(event) {
+	var $this = $(this)
+	if ($this.is(event.target) || $this.is(event.target.parentNode))
+		$(this).toggleClass('expanded')
+})
+
+
+//style2('raw_ast$')
+//$('<hr/>').appendTo('body')
+//style2('raw_findVariables')
+//$('<hr/>').appendTo('body')
+style2('raw_backbone')
+
 
 </script>
 </body>
