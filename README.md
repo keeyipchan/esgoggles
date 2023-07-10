@@ -2,9 +2,8 @@ esgoggles
 =========
 
 Browser ide for reading and exploring javascript code.
-
-Demo 1 -- style 1: http://keeyipchan.github.com/esgoggles/demo/style1.html (use Chrome)
-Demo 2 -- style 2 with variable scopes: http://keeyipchan.github.com/esgoggles/demo/style2.html (use Chrome)
+Demo 1 -- style 1: https://keeyipchan.github.io/esgoggles/demo/style1.html (use Chrome)
+Demo 2 -- style 2 with variable scopes: https://keeyipchan.github.io/esgoggles/demo/style2.html (use Chrome)
 
 ## Purpose
 
@@ -53,8 +52,8 @@ es.params > es:first-child:before {
 
 ## Screenshots
 
-<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"/></a>
+<a href="https://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"><img src="https://content.screencast.com/users/keeyipchan/folders/Jing/media/ee49cfc7-cf1a-4bf9-8bdd-c509927edad6/00000001.png"/></a>
 
-<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"/></a>
+<a href="https://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"><img src="https://content.screencast.com/users/keeyipchan/folders/Jing/media/a8f2e573-399e-417e-ac01-cde111c7116c/00000002.png"/></a>
 
-<a href="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"><img src="http://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"/></a>
+<a href="https://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"><img src="https://content.screencast.com/users/keeyipchan/folders/Jing/media/0a08e3e7-7083-4f95-bc09-0444efd41340/00000003.png"/></a>
